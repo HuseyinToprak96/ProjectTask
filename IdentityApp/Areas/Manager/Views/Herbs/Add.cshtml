@@ -1,0 +1,47 @@
+﻿@model CoreLayer.Dtos.Herb.HerbDto
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Manager/Views/Shared/adminLayout.cshtml";
+}
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Add" enctype="multipart/form-data" method="post" class="HerbForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name</label>
+                <input asp-for="Name" name="Name" class="form-control" required/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
+                <textarea class="form-control" name="Description" id="editorid" required></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label">Image</label>
+                <input type="file" name="formFile" class="form-control" required/>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="button" onclick="Cancel()" value="Cancel" class="btn btn-light" />
+
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+<script src="~/ckeditor/ckeditor.js">
+</script>
+<script>
+    CKEDITOR.replace("editorid");
+
+
+    function Cancel() {
+        window.location.href = "/Manager/Herbs/List";
+    }
+</script>
+}

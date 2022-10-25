@@ -1,0 +1,19 @@
+﻿@model HerbDetailDto
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Name</h1>
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="/@Model.Image" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">@Html.Raw(Model.Description)</p>
+            @foreach (var item in Model.Complaints)
+	{
+		 
+	}
+        </div>
+    </div>

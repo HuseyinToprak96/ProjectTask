@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    #HerbList{
+        display:grid;
+        grid-template-columns:16% 16% 16% 16% 16%;
+        width:100%;
+        background-color:honeydew;
+        padding-left:4%;
+        margin-left:5%;
+    }
+    #component{
+        display:grid;
+        grid-template-columns:20% 75%;
+        width:100%;
+        margin-top:80px
+    }
+</style>
+<div id="component">
+    <div id="leftMenu">
+
+    </div>
+    <div id="HerbList">
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#HerbList").load("/Herbss/List");
+    });
+</script>

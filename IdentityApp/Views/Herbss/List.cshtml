@@ -1,0 +1,28 @@
+﻿@model List<HerbDto>
+
+@foreach (var herb in Model)
+{
+    <div id="card">
+        <div>@herb.Name</div>
+        <div>
+            <img src="/@herb.Image" height="220" width="160" />
+        </div>
+        <div>
+            <a href="/Herbss/Detail?code=@herb.EncrypedId">
+                <button class="btn btn-light">
+                    Detay
+                </button>
+            </a>
+        </div>
+    </div>
+}
+<style>
+    #card {
+        width: 16%;
+        height: 320px;
+        border-radius: 16px;
+        margin-left:4%;
+    }
+</style>
+<script>
+</script>

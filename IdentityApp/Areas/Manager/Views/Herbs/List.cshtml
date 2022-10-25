@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CoreLayer.Dtos.Herb.HerbDto>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Areas/Manager/Views/Shared/adminLayout.cshtml";
+}
+<p>
+    <a href="/Manager/Herbs/Add" title="Create New" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                Transactions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="tr_@item.Id">
+                <td>
+                    <img src="~/@item.Image" height="80" width="80" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.Raw(item.Description)
+                </td>
+                <td>
+                    <button class="btn btn-warning" onclick="EditHerb('@item.EncrypedId');">Edit</button>
+                    <button class="btn btn-primary" onclick="DetailHerb('@item.EncrypedId');">Detail</button>
+                    <button class="btn btn-danger" onclick="DeleteHerb('@item.EncrypedId');">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function EditHerb(id) {
+        window.location.href = "/Manager/Herbs/Edit?code=" + id;
+    }
+    function DetailHerb(id) {
+        window.location.href = "/Manager/Herbs/Detail?code=" + id;
+    }
+    function DeleteHerb(id) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText;
+                if (response != 0) {
+                    console.log(response);
+                    document.getElementById("tr_" + response).remove();
+                }
+                else {
+                    alert("Herb Not Found");
+                }
+            }
+        }
+        xhr.open("POST", "/Manager/Herbs/Remove?code=" + id, true);
+        xhr.send();
+    }
+</script>
+

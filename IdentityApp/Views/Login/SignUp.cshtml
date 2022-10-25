@@ -1,0 +1,42 @@
+﻿@model CreatedUser
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/login.css" rel="stylesheet" />
+<div class="sidenav">
+    <div class="login-main-text">
+        <h2>Application<br> Login Page</h2>
+        <p>Login or register from here to access.</p>
+    </div>
+</div>
+<div class="main">
+    <div class="col-md-6 col-sm-12">
+        <div class="login-form">
+            <form asp-controller="Login" asp-action="SignUp" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" placeholder="Enter Username" name="UserName">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" placeholder="Enter Email" name="Email">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" placeholder="Enter Phone" name="Phone">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="Password">
+                </div>
+                <button type="submit" class="btn btn-black">Sign Up</button>
+                <a href="/Login/Index" onclick="javascript:void(0)"> <button type="button" onclick="javascript:void(0)" class="btn btn-secondary">Login</button></a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+

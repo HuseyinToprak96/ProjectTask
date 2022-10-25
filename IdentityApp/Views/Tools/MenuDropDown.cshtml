@@ -1,0 +1,12 @@
+﻿@model List<ComplaintDto>
+
+    @foreach (var item in Model)
+    {
+        <a class="dropdown-item" href="#" onclick="GetCategories(@item.Id)">@item.Name</a>
+    }<div class="dropdown-divider"></div>
+<script>
+    function getCategories(categori) {
+        $("#HerbList").load("/Herbss/List?cat=" + categori);
+
+    }
+</script>
