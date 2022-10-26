@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RepositoryLayer.Migrations
 {
-    public partial class initDB24102022 : Migration
+    public partial class initDB26102022 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -217,6 +217,52 @@ namespace RepositoryLayer.Migrations
                         principalTable: "Herbs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Complaints",
+                columns: new[] { "Id", "CreatedDate", "IsActive", "IsDeleted", "Name", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "Kansızlık", null },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "Vitamin Eksikliği", null },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "Demir Eksikliği", null },
+                    { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "Yüksek Tansiyon", null },
+                    { 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, "Düşük Tansiyon", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Herbs",
+                columns: new[] { "Id", "CreatedDate", "Description", "Image", "IsActive", "IsDeleted", "Name", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Açıklama 1", "images/56f0229e-691b-496f-9132-d086bf8e3929papatya.jpg", true, false, "Bitki 1", null },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Açıklama 2", "images/25ad7ac7-23ad-44f6-bdf2-68b091540076indir.jfif", true, false, "Bitki 2", null },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Açıklama 3", "images/56f0229e-691b-496f-9132-d086bf8e3929papatya.jpg", true, false, "Bitki 3", null },
+                    { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Açıklama 4", "images/25ad7ac7-23ad-44f6-bdf2-68b091540076indir.jfif", true, false, "Bitki 4", null },
+                    { 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Açıklama 5", "images/56f0229e-691b-496f-9132-d086bf8e3929papatya.jpg", true, false, "Bitki 5", null },
+                    { 6, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Açıklama 6", "images/25ad7ac7-23ad-44f6-bdf2-68b091540076indir.jfif", true, false, "Bitki 6", null },
+                    { 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Açıklama 7", "images/56f0229e-691b-496f-9132-d086bf8e3929papatya.jpg", true, false, "Bitki 7", null },
+                    { 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Açıklama 8", "images/25ad7ac7-23ad-44f6-bdf2-68b091540076indir.jfif", true, false, "Bitki 8", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ComplaintHerbs",
+                columns: new[] { "Id", "ComplaintId", "CreatedDate", "HerbId", "IsActive", "IsDeleted", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, true, false, null },
+                    { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, true, false, null },
+                    { 12, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, true, false, null },
+                    { 3, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, true, false, null },
+                    { 11, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, true, false, null },
+                    { 4, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, true, false, null },
+                    { 10, 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, true, false, null },
+                    { 5, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, true, false, null },
+                    { 9, 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, true, false, null },
+                    { 6, 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, true, false, null },
+                    { 7, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, true, false, null },
+                    { 8, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, true, false, null }
                 });
 
             migrationBuilder.CreateIndex(

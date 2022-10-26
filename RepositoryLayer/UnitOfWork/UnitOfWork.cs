@@ -10,8 +10,8 @@ namespace RepositoryLayer.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _dbContext;
-        public UnitOfWork(DbContext dbContext)
+        private readonly IdentityDbContext _dbContext;
+        public UnitOfWork(IdentityDbContext dbContext)
         {
             _dbContext = dbContext;
         }

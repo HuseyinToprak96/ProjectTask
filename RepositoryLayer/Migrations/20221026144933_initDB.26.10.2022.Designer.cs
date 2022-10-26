@@ -9,9 +9,9 @@ using RepositoryLayer.IdentityDBContext;
 
 namespace RepositoryLayer.Migrations
 {
-    [DbContext(typeof(IdentityDBContext.DbContext))]
-    [Migration("20221024132527_initDB24.10.2022")]
-    partial class initDB24102022
+    [DbContext(typeof(IdentityDbContext))]
+    [Migration("20221026144933_initDB.26.10.2022")]
+    partial class initDB26102022
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,48 @@ namespace RepositoryLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Complaints");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Kansızlık"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Vitamin Eksikliği"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Demir Eksikliği"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Yüksek Tansiyon"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Düşük Tansiyon"
+                        });
                 });
 
             modelBuilder.Entity("CoreLayer.Entities.ComplaintHerbEntity.ComplaintHerb", b =>
@@ -82,6 +124,116 @@ namespace RepositoryLayer.Migrations
                     b.HasIndex("HerbId");
 
                     b.ToTable("ComplaintHerbs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ComplaintId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 1,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ComplaintId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 2,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ComplaintId = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 3,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ComplaintId = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 4,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ComplaintId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 5,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ComplaintId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 6,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ComplaintId = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 7,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ComplaintId = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 8,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ComplaintId = 5,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 5,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ComplaintId = 5,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 4,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ComplaintId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 3,
+                            IsActive = true,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ComplaintId = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HerbId = 2,
+                            IsActive = true,
+                            IsDeleted = false
+                        });
                 });
 
             modelBuilder.Entity("CoreLayer.Entities.HerbEntity.Herb", b =>
@@ -120,6 +272,88 @@ namespace RepositoryLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Herbs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Açıklama 1",
+                            Image = "images/56f0229e-691b-496f-9132-d086bf8e3929papatya.jpg",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bitki 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Açıklama 2",
+                            Image = "images/25ad7ac7-23ad-44f6-bdf2-68b091540076indir.jfif",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bitki 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Açıklama 3",
+                            Image = "images/56f0229e-691b-496f-9132-d086bf8e3929papatya.jpg",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bitki 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Açıklama 4",
+                            Image = "images/25ad7ac7-23ad-44f6-bdf2-68b091540076indir.jfif",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bitki 4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Açıklama 5",
+                            Image = "images/56f0229e-691b-496f-9132-d086bf8e3929papatya.jpg",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bitki 5"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Açıklama 6",
+                            Image = "images/25ad7ac7-23ad-44f6-bdf2-68b091540076indir.jfif",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bitki 6"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Açıklama 7",
+                            Image = "images/56f0229e-691b-496f-9132-d086bf8e3929papatya.jpg",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bitki 7"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Açıklama 8",
+                            Image = "images/25ad7ac7-23ad-44f6-bdf2-68b091540076indir.jfif",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bitki 8"
+                        });
                 });
 
             modelBuilder.Entity("CoreLayer.Entities.UserEntity.UserApp", b =>

@@ -7,23 +7,25 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 namespace RepositoryLayer.IdentityDBContext
 {
-    public class DbContext:IdentityDbContext<CoreLayer.Entities.UserEntity.UserApp>
+    public class IdentityDbContext:IdentityDbContext<CoreLayer.Entities.UserEntity.UserApp>
     {
-        public DbContext(DbContextOptions<DbContext> options) : base(options)
+        public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
         {
 
         }
         public DbSet<Herb> Herbs { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
         public DbSet<ComplaintHerb> ComplaintHerbs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
 

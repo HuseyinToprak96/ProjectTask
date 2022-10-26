@@ -50,7 +50,7 @@ namespace IdentityApp
             });
             services.AddAutoMapper(typeof(MapperProfile));
 
-            services.AddDbContext<RepositoryLayer.IdentityDBContext.DbContext>(options =>
+            services.AddDbContext<RepositoryLayer.IdentityDBContext.IdentityDbContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("Project")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IService<>), typeof(Service<>));
@@ -72,7 +72,7 @@ namespace IdentityApp
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<RepositoryLayer.IdentityDBContext.DbContext>();
+            }).AddEntityFrameworkStores<RepositoryLayer.IdentityDBContext.IdentityDbContext>();
             //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => {
             //    x.LoginPath = "/Login/Index";
             //});

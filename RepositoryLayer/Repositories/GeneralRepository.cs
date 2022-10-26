@@ -11,9 +11,9 @@ namespace RepositoryLayer.Repositories
 {
     public class GeneralRepository<T> : IGenericRepository<T> where T:class
     {
-        protected IdentityDBContext.DbContext _db;
+        protected IdentityDBContext.IdentityDbContext _db;
         private readonly DbSet<T> _dbSet;
-        public GeneralRepository(IdentityDBContext.DbContext db)
+        public GeneralRepository(IdentityDBContext.IdentityDbContext db)
         {
             _db = db;
             _dbSet = _db.Set<T>();

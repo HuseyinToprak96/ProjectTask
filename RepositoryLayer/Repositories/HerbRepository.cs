@@ -12,7 +12,7 @@ namespace RepositoryLayer.Repositories
 {
     public class HerbRepository : GeneralRepository<Herb>,IHerbRepository
     {
-        public HerbRepository(IdentityDBContext.DbContext db) : base(db)
+        public HerbRepository(IdentityDBContext.IdentityDbContext db) : base(db)
         {
         }
 

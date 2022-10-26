@@ -47,7 +47,7 @@ namespace Identity.API
             });
             services.AddAutoMapper(typeof(MapperProfile));
 
-            services.AddDbContext<RepositoryLayer.IdentityDBContext.DbContext>(options =>
+            services.AddDbContext<RepositoryLayer.IdentityDBContext.IdentityDbContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("Project")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IService<>), typeof(Service<>));

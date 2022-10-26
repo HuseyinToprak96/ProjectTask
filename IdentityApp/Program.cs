@@ -19,7 +19,7 @@ namespace IdentityApp
         {
             var host = CreateHostBuilder(args).Build();
             using var scope = host.Services.CreateScope();
-            var identityDbContext = scope.ServiceProvider.GetRequiredService<RepositoryLayer.IdentityDBContext.DbContext>();
+            var identityDbContext = scope.ServiceProvider.GetRequiredService<RepositoryLayer.IdentityDBContext.IdentityDbContext>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<UserApp>>();
             identityDbContext.Database.Migrate();
             if (!userManager.Users.Any())
