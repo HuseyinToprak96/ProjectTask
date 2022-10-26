@@ -123,8 +123,14 @@ namespace Identity.Web.Areas.Manager.Controllers
                 default:
                     break;
             }
-
             return fileCreateInvoker.CreateFile();
+        }
+        public async Task<JsonResult> Status(int id)
+        {
+            var herb = await _herbAPI.Find(id);
+            herb.IsActive = !herb.IsActive;
+            await _herbAPI.Update(herb);
+            return Json(id);
         }
     }
 }

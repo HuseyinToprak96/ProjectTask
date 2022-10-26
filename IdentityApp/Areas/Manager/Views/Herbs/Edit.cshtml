@@ -13,6 +13,7 @@
     <div class="col-md-12">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
 @Html.HiddenFor(x=>x.Id)
+            @Html.HiddenFor(x=>x.Image)
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -26,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input type="file" name="formFile" asp-for="Image" class="form-control" required/>
+                <input type="file" name="formFile" asp-for="Image" class="form-control" value="@Model.Image"/>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">

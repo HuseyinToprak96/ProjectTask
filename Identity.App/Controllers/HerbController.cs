@@ -33,7 +33,7 @@ namespace Identity.API.Controllers
         public async Task<IActionResult> List()
         {
             var herbs = await _herbService.GetAllAsync();
-            var list=herbs.Where(x => x.IsActive == true && x.IsDeleted == false);
+            var list=herbs.Where(x => x.IsDeleted == false);
             return CreateActionResult<IEnumerable<HerbDto>>(CustomResponseDto<IEnumerable<HerbDto>>.success(200, _mapper.Map<IEnumerable<HerbDto>>(list)));
         }
         [HttpGet]

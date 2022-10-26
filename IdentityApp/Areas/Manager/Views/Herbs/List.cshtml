@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
                 Transactions
             </th>
         </tr>
@@ -29,22 +32,35 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr id="tr_@item.Id">
-                <td>
-                    <img src="~/@item.Image" height="80" width="80" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.Raw(item.Description)
-                </td>
-                <td>
-                    <button class="btn btn-warning" onclick="EditHerb('@item.EncrypedId');">Edit</button>
-                    <button class="btn btn-primary" onclick="DetailHerb('@item.EncrypedId');">Detail</button>
-                    <button class="btn btn-danger" onclick="DeleteHerb('@item.EncrypedId');">Delete</button>
-                </td>
-            </tr>
+        <tr id="tr_@item.Id">
+            <td>
+                <img src="~/@item.Image" height="80" width="80" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.Raw(item.Description)
+            </td>
+            <td>
+                @if (item.IsActive)
+                {
+                    <span class="badge text-bg-success" id="sp_@item.Id" onclick="StatusChange(@item.Id)">Active</span>
+
+                }
+                else
+                {
+                    <span class="badge text-bg-danger" id="sp_@item.Id" onclick="StatusChange(@item.Id)">Passive</span>
+
+                }
+                @*@Html.Raw(item.IsActive == true ? "<span class='badge badge-success'>Active</span>": "<span class='badge badge-danger'>Passive</span>")*@
+            </td>
+            <td>
+                <button class="btn btn-warning" onclick="EditHerb('@item.EncrypedId');">Edit</button>
+                <button class="btn btn-primary" onclick="DetailHerb('@item.EncrypedId');">Detail</button>
+                <button class="btn btn-danger" onclick="DeleteHerb('@item.EncrypedId');">Delete</button>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -70,6 +86,25 @@
             }
         }
         xhr.open("POST", "/Manager/Herbs/Remove?code=" + id, true);
+        xhr.send();
+    }
+    function StatusChange(id) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText;
+                var classN = document.getElementById("sp_" + response).className;
+                if (classN == "badge text-bg-success") {
+                    document.getElementById("sp_" + response).className = "badge text-bg-danger";
+                    document.getElementById("sp_" + response).innerText = "Passive";
+                }
+                else {
+                    document.getElementById("sp_" + response).className = "badge text-bg-success";
+                    document.getElementById("sp_" + response).innerText = "Active";
+                }
+            }
+        }
+        xhr.open("POST", "/Manager/Herbs/Status?id=" + id, true);
         xhr.send();
     }
 </script>

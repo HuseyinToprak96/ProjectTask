@@ -18,8 +18,8 @@ namespace CoreLayer.Dtos.Herb
         public string Name { get; set; }
         [Display(Name = "Description")]
         public string Description { get; set; }
-        [Display(Name = "Image")]
-
+        [Display(Name = "Status")]
+        public bool IsActive { get; set; }
         public string Image { get; set; }
     }
 }
