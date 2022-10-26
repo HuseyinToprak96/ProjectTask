@@ -4,7 +4,10 @@ using CoreLayer.Interfaces.Repository.HerbRepository;
 using CoreLayer.Interfaces.Service;
 using CoreLayer.Interfaces.Service.Herb;
 using CoreLayer.Interfaces.UnitOfWork;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Identity.Web.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -54,26 +57,43 @@ namespace IdentityApp
             services.AddScoped(typeof(IGenericRepository<>), typeof(GeneralRepository<>));
             services.AddScoped<IHerbRepository, HerbRepository>();
             services.AddScoped<IHerbService, HerbService>();
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
+
             services.AddAutoMapper(typeof(MapperProfile));
 
-            CookieBuilder cookieBuilder = new CookieBuilder();
+           
+            services.AddIdentity<UserApp, IdentityRole>(opt =>
+            {
+                opt.User.RequireUniqueEmail = true;
+                opt.User.AllowedUserNameCharacters = "abcçdefghýijklmnoprstuüvwyzQWERTYUIOPLKJHGFDSAZXCVBNM-._*";
+                opt.Password.RequiredLength = 4;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<RepositoryLayer.IdentityDBContext.DbContext>();
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => {
+            //    x.LoginPath = "/Login/Index";
+            //});
+            services.ConfigureApplicationCookie(opts =>
+            {
+                  CookieBuilder cookieBuilder = new CookieBuilder();
             cookieBuilder.Name = "MyCookie";
             cookieBuilder.HttpOnly = false;
-          //  cookieBuilder.Expiration = System.TimeSpan.FromDays(60);
+            //  cookieBuilder.Expiration = System.TimeSpan.FromDays(60);
             cookieBuilder.SameSite = SameSiteMode.Lax;
             cookieBuilder.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 
-            services.ConfigureApplicationCookie(opts =>
-            {
-                opts.LoginPath = new PathString("/Login/Index");
                 // opts.LogoutPath=new PathString("/Login/Index");
+                opts.LoginPath = "/Login";
                 opts.Cookie = cookieBuilder;
                 opts.SlidingExpiration = true;
 
             });
-            services.AddIdentity<UserApp, IdentityRole>().AddEntityFrameworkStores<RepositoryLayer.IdentityDBContext.DbContext>();
-            services.AddDataProtection();
 
+            services.AddDataProtection();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

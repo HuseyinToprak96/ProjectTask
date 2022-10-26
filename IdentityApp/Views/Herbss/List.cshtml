@@ -1,21 +1,26 @@
 ﻿@model List<HerbDto>
+<div class="container my-5">
+    <div class="card-columns">
+        @foreach (var herb in Model)
+        {
 
-@foreach (var herb in Model)
-{
-    <div id="card">
-        <div>@herb.Name</div>
-        <div>
-            <img src="/@herb.Image" height="220" width="160" />
-        </div>
-        <div>
-            <a href="/Herbss/Detail?code=@herb.EncrypedId">
-                <button class="btn btn-light">
-                    Detay
-                </button>
-            </a>
-        </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-header">
+                    <img src="/@herb.Image" class="card-img-top" />
+                </div>
+                <div class="card-body">
+                    <h6>@herb.Name</h6>
+                    <p>
+                        <a href="/Herbss/Detail?code=@herb.EncrypedId" class="btn btn-outline-primary btn-block">
+                            Detay
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+        }
     </div>
-}
+    </div>
 <style>
     #card {
         width: 16%;

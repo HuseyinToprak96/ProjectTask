@@ -1,0 +1,5 @@
+-Sayfalama Yapýlacak
+-IdentityUser Authorize ve Authentication ayarlarý tamamlanacak
+-UserControler admin ayarlarý yapýlacak
+-Profil kýsmý ayarlanacak
+-Login hata kontrolü yapýlacak(Cookie)

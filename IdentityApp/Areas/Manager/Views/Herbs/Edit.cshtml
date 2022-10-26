@@ -16,7 +16,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" name="Name" value="@Model.Name" />
+                <input asp-for="Name" class="form-control" name="Name" value="@Model.Name" required />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input type="file" name="formFile" asp-for="Image" class="form-control"/>
+                <input type="file" name="formFile" asp-for="Image" class="form-control" required/>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">

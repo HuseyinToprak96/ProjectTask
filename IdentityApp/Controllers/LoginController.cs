@@ -24,22 +24,28 @@ namespace Identity.Web.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(LoginDto loginDto)
+        public async Task<IActionResult> Index(LoginDto loginDto,string ReturnUrl=null)
         {
-            var hasUser = await _UserManager.FindByEmailAsync(loginDto.Email);
-            if (hasUser==null)
+            ReturnUrl = ReturnUrl ?? Url.Action("Index", "Home");
+
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Error Mail or Password");
-                return View();
+                var hasUser = await _UserManager.FindByEmailAsync(loginDto.Email);
+                if (hasUser != null)
+                {
+                   // await _SignInManager.SignOutAsync();
+                    Microsoft.AspNetCore.Identity.SignInResult result = await _SignInManager.PasswordSignInAsync(hasUser, loginDto.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                    return Redirect(ReturnUrl);
+                    }
+                }
+                else
+                {
+   ModelState.AddModelError(string.Empty, "Error Mail or Password");
+                }
             }
-           // await _SignInManager.SignOutAsync();
-            var signInResult = await _SignInManager.PasswordSignInAsync(hasUser, loginDto.Password,false, false);
-            if (!signInResult.Succeeded)
-            {
-                ModelState.AddModelError("", "Error Mail or Password");
-                return View();
-            }
-            return RedirectToAction(nameof(HomeController.Index),"Home");
+            return View();
         }
         public async Task<IActionResult> Logout()
         {
@@ -51,9 +57,19 @@ namespace Identity.Web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SignUp(CreatedUser createdUser)
+        public async Task<IActionResult> SignUp(CreatedUser createdUser)
         {
-            return RedirectToAction("Index");
+            UserApp userApp = new UserApp() { UserName=createdUser.UserName, Email=createdUser.Email, PhoneNumber=createdUser.PhoneNumber };
+           IdentityResult result=  await _UserManager.CreateAsync(userApp, createdUser.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError("", item.Description);
+            }
+            return View(createdUser);
         }
     }
 }

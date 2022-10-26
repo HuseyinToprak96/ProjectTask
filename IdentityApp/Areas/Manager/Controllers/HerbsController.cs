@@ -1,6 +1,9 @@
 ﻿using CoreLayer.Dtos.Herb;
+using Identity.Web.DesignPattern.CommandDesign;
+using Identity.Web.Framework;
 using Identity.Web.Security;
 using Identity.Web.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +18,7 @@ using System.Threading.Tasks;
 namespace Identity.Web.Areas.Manager.Controllers
 {
     [Area("Manager")]
+   // [Authorize]
     public class HerbsController : Controller
     {
         private readonly HerbAPI _herbAPI;
@@ -99,6 +103,28 @@ namespace Identity.Web.Areas.Manager.Controllers
                 return Json(0);
             }
             return Json(id);
+        }
+
+        public async Task<IActionResult> CreateFile(int type)
+        {
+            var herbs= await _herbAPI.List();
+            FileCreateInvoker fileCreateInvoker = new();
+            EFileType fileType = (EFileType)type;
+            switch (fileType)
+            {
+                case EFileType.Excel:
+                    ExcelFile<HerbDto> excelFile = new(herbs);
+                    fileCreateInvoker.SetCommand(new CreateExcelTableActionCommand<HerbDto>(excelFile));
+                    break;
+                case EFileType.Pdf:
+                    PdfFile<HerbDto> pdfFile = new(herbs, HttpContext);
+                    fileCreateInvoker.SetCommand(new CreatePdfTableActionCommand<HerbDto>(pdfFile));
+                    break;
+                default:
+                    break;
+            }
+
+            return fileCreateInvoker.CreateFile();
         }
     }
 }

@@ -11,14 +11,18 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/Home/Index">
                 <img src="/images/adminLogo.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
             </a>
         </div>
     </nav>
     <div class="row">
         <div class="col-md-3" id="complaints">
-           
+           <ul id="list">
+               <li><a href="/Manager/User/List"  class="btn btn-light w-100 disabled"> Users</a></li>
+               <li><a href="/Manager/Herbs/List"  class="btn btn-light w-100">Herbs</a></li>
+               <li><a href="/Manager/Complaint/Lists" class="btn btn-light w-100">Complaints</a></li>
+           </ul>
         </div>
         <div class="col-md-8 mt-4">
             @RenderBody()
@@ -30,8 +34,15 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+<style>
+    #list li{
+        list-style-type:none;
+    }
+</style>
 <script>
     $(function () {
-        $("#complaints").load("/Manager/Complaint/List");
+       // $("#complaints").load("/Manager/Complaint/List");
+     
     });
+
 </script>

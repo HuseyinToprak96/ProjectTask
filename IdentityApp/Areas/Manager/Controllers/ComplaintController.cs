@@ -1,4 +1,5 @@
 ﻿using Identity.Web.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace Identity.Web.Areas.Manager.Controllers
 {
     [Area("Manager")]
+   // [Authorize]
     public class ComplaintController : Controller
     {
         private readonly ComplaintAPI _complaintAPI;
@@ -21,6 +23,11 @@ namespace Identity.Web.Areas.Manager.Controllers
         {
             var complaints =await _complaintAPI.List();
             return PartialView(complaints);
+        }
+        public async Task<IActionResult> Lists()
+        {
+            var complaints = await _complaintAPI.List();
+            return View(complaints);
         }
     }
 }

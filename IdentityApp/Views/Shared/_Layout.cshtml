@@ -30,24 +30,25 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="categoriesMenu"></div>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Transactions
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/Manager/Herbs/List">Manager Panel</a>
-                            <a class="dropdown-item" href="/Login/Logout">Logout</a>
-                        </div>
-                    </li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                    }
+                    
+                    @*@if (User.Identity.IsAuthenticated)
+                    {*@
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Transactions
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/Manager/Herbs/List">Manager Panel</a>
+                        <a class="dropdown-item" href="/Login/Logout">Logout</a>
+                    </div>
+                </li>
+                    @*}
                     else
                     {
                         <li class="nav-item">
                             <a class="nav-link" href="/Login/Index">Login</a>
                         </li>
-                    }
+                    }*@
                 </ul>
             </div>
         </nav>
